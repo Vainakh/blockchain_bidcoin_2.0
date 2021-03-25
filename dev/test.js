@@ -1,20 +1,11 @@
-function Blockchain() {
-  this.chain = [];
-  this.newTransactions = [];
-};
+const Blockchain = require('./blockchain');
 
-Blockchain.prototype.createNewBlock = function(nonce, previousBlockHash, hash) {
-  const newBlock = {
-    index: this.chain.length + 1,
-    timestamp: Date.now(),
-    transacttions: this.newTransactions,
-    nonce: nonce,
-    hash: hash,
-    previousBlockHash: previousBlockHash
-  }
+const bidcoin = new Blockchain();
 
-  this.newTransactions = [];
-  this.chain.push(newBlock);
+bidcoin.createNewBlock(2000, '1ONINA8998DSFHF', '1MONINA8998DSFHF');
 
-  return newBlock;
-};
+bidcoin.createNewBlock(3000, '2ONINA8998DSFHF', '2MONINA8998DSFHF');
+
+bidcoin.createNewBlock(4000, '3ONINA8998DSFHF', '3MONINA8998DSFHF');
+
+console.log(bidcoin);
