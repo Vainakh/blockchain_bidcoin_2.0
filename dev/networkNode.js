@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 const Blockchain = require('./blockchain');
 const { v1: uuidv1 } = require('uuid');
 
+const process = require('process');
+const port = process.argv[2];
+
 const nodeAddress = uuidv1().split('-').join('');
 
 const bidcoin = new Blockchain();
@@ -41,6 +44,6 @@ app.get('/mine', (req, res) => {
 
 });
 
-app.listen(3000, () => {
-  console.log('Server is up and running on port 3000...')
+app.listen(port, () => {
+  console.log(`Server is up and running on port ${port}...`);
 });
