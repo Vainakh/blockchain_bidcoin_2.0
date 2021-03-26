@@ -48,23 +48,27 @@ const bidcoin = new Blockchain();
 
 4//
 
-const previousBlockHash = 'ADLAN2348765347971';
-const currentBlockData = [
-  {
-    amount: 10,
-    sender: 'ADLAN100GHDKRJ543764980523',
-    recipient: 'JULIAGHDKRJ543764980523'
-  },
-  {
-    amount: 30,
-    sender: 'ADLAN200GHDKRJ543764980523',
-    recipient: 'JULIAGHDKRJ543764980523'
-  },
-  {
-    amount: 100,
-    sender: 'ADLAN300GHDKRJ543764980523',
-    recipient: 'JULIAGHDKRJ543764980523'
-  }
-];
+// const previousBlockHash = 'ADLAN2348765347971';
+// const currentBlockData = [
+//   {
+//     amount: 10,
+//     sender: 'ADLAN100GHDKRJ543764980523',
+//     recipient: 'JULIAGHDKRJ543764980523'
+//   },
+//   {
+//     amount: 30,
+//     sender: 'ADLAN200GHDKRJ543764980523',
+//     recipient: 'JULIAGHDKRJ543764980523'
+//   },
+//   {
+//     amount: 100,
+//     sender: 'ADLAN300GHDKRJ543764980523',
+//     recipient: 'JULIAGHDKRJ543764980523'
+//   }
+// ];
 
-console.log(bidcoin.hashBlock(previousBlockHash, currentBlockData, 127559));
+// console.log(bidcoin.hashBlock(previousBlockHash, currentBlockData, 127559));
+
+5//
+
+console.log(bidcoin);
