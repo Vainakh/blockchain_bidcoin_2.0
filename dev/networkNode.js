@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const Blockchain = require('./blockchain');
 const { v1: uuidv1 } = require('uuid');
+const rp = require('request-promise');
 
 const process = require('process');
 const port = process.argv[2];
@@ -46,7 +47,27 @@ app.get('/mine', (req, res) => {
 //register a node and broadcast it to the network
 app.post('/register-and-broadcast-node', (req, res) => {
   const newNodeUrl = req.body.newNodeUrl;
+  if (bidcoin.networkNodes.indexOf(newNodeUrl == -1)) bidcoin.networkNodes.push(newNodeUrl);
 
+  const regNodesPromises = [];
+  bidcoin.networkNodes.forEach(networkNodeUrl => {
+    //register-node endpoint
+    const requestOptions = {
+      url: networkNodeUrl + '/register-node',
+      method: 'POST',
+      body: {
+        newNodeUrl: newNodeUrl
+      },
+      json: true
+    };
+
+    regNodesPromises.push(rp(requestOptions));
+  });
+
+  Promise.all(regNodesPromises)
+  .then(data => {
+    //use the data
+  })
 });
 
 //register a node with the network
