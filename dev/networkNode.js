@@ -47,13 +47,14 @@ app.get('/mine', (req, res) => {
 //register a node and broadcast it to the network
 app.post('/register-and-broadcast-node', (req, res) => {
   const newNodeUrl = req.body.newNodeUrl;
+  //register nodes
   if (bidcoin.networkNodes.indexOf(newNodeUrl == -1)) bidcoin.networkNodes.push(newNodeUrl);
 
   const regNodesPromises = [];
   bidcoin.networkNodes.forEach(networkNodeUrl => {
     //register-node endpoint
     const requestOptions = {
-      url: networkNodeUrl + '/register-node',
+      uri: networkNodeUrl + '/register-node',
       method: 'POST',
       body: {
         newNodeUrl: newNodeUrl
@@ -67,6 +68,17 @@ app.post('/register-and-broadcast-node', (req, res) => {
   Promise.all(regNodesPromises)
   .then(data => {
     //use the data
+    const bulkRegisterOptions = {
+      uri: newNodeUrl + '/register-nodes-bulk',
+      method: 'POST',
+      body: { allNetworkNodes: [ ...bidcoin.networkNodes, bidcoin.currentNodeUrl ]},
+      json: true
+    };
+
+    return rp(bulkRegisterOptions);
+  })
+  .then(data => {
+    res.json({ note: 'New node registered with network successfully'});
   })
 });
 
